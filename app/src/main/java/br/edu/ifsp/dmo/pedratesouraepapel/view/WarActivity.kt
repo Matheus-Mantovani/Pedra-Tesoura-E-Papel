@@ -42,6 +42,12 @@ class WarActivity : AppCompatActivity() {
                     "${getString(R.string.winner)} ${winner.name}",
                     Toast.LENGTH_LONG
                 ).show()
+            } else {
+                Toast.makeText(
+                    this,
+                    getString(R.string.empate),
+                    Toast.LENGTH_LONG
+                ).show()
             }
 
             weaponPlayer1 = null
