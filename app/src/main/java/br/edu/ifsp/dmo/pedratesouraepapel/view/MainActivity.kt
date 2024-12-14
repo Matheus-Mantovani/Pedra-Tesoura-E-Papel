@@ -49,6 +49,8 @@ class MainActivity : AppCompatActivity() {
         val mIntent = Intent(this, WarActivity::class.java)
         mIntent.putExtra(Constants.KEY_PLAYER_1, binding.edittextPlayer1.text.toString())
         mIntent.putExtra(Constants.KEY_PLAYER_2, binding.edittextPlayer2.text.toString())
+        mIntent.putExtra(Constants.KEY_IS_BOT_1, binding.checkboxPlayer1.isChecked)
+        mIntent.putExtra(Constants.KEY_IS_BOT_2, binding.checkboxPlayer2.isChecked)
         mIntent.putExtra(Constants.KEY_ROUNDS, battles)
         startActivity(mIntent)
     }

@@ -3,6 +3,7 @@ package br.edu.ifsp.dmo.pedratesouraepapel.view
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
@@ -10,7 +11,10 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import br.edu.ifsp.dmo.pedratesouraepapel.R
 import br.edu.ifsp.dmo.pedratesouraepapel.databinding.ActivityWarBinding
+import br.edu.ifsp.dmo.pedratesouraepapel.model.Paper
 import br.edu.ifsp.dmo.pedratesouraepapel.model.Player
+import br.edu.ifsp.dmo.pedratesouraepapel.model.Rock
+import br.edu.ifsp.dmo.pedratesouraepapel.model.Scissors
 import br.edu.ifsp.dmo.pedratesouraepapel.model.War
 import br.edu.ifsp.dmo.pedratesouraepapel.model.Weapon
 
@@ -20,6 +24,9 @@ class WarActivity : AppCompatActivity() {
     private lateinit var war: War
     private var weaponPlayer1: Weapon? = null
     private var weaponPlayer2: Weapon? = null
+    private var isP1bot: Boolean = true //valor é modificado no openBundle
+    private var isP2bot: Boolean = true
+    private val tag = "testewar"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,10 +37,19 @@ class WarActivity : AppCompatActivity() {
         updateUI()
         configListener()
         configResultLauncher()
+
+        Log.i(tag, "isP1bot: $isP1bot")
+        Log.i(tag, "isP2bot: $isP2bot")
     }
 
     private fun battle() {
         val winner: Player?
+
+        if(isP1bot)
+            weaponPlayer1 = getRandomWeapon()
+        if(isP2bot)
+            weaponPlayer2 = getRandomWeapon()
+
         if(weaponPlayer1 != null && weaponPlayer2 != null) {
             winner = war.toBattle(weaponPlayer1!!, weaponPlayer2!!)
             if(winner != null) {
@@ -106,6 +122,11 @@ class WarActivity : AppCompatActivity() {
         }
     }
 
+    private fun getRandomWeapon(): Weapon {
+        val weapons = listOf(Rock, Paper, Scissors)
+        return weapons.random()
+    }
+
     private fun configListener() {
         binding.buttonWeapon1.setOnClickListener { startSelectionActivity(1) }
         binding.buttonWeapon2.setOnClickListener { startSelectionActivity(2) }
@@ -131,7 +152,12 @@ class WarActivity : AppCompatActivity() {
         binding.labelPlayer2.text = war.opponent2.name
         updateScoreBoard()
 
+        if(isP1bot)
+            binding.buttonWeapon1.visibility = View.GONE
         binding.buttonWeapon1.text = "${war.opponent1.name} ${getString(R.string.gum_selection)}"
+
+        if(isP2bot)
+            binding.buttonWeapon2.visibility = View.GONE
         binding.buttonWeapon2.text = "${war.opponent2.name} ${getString(R.string.gum_selection)}"
     }
 
@@ -140,6 +166,8 @@ class WarActivity : AppCompatActivity() {
         if(extras != null) {
             val p1 = extras.getString(Constants.KEY_PLAYER_1)
             val p2 = extras.getString(Constants.KEY_PLAYER_2)
+            isP1bot = extras.getBoolean(Constants.KEY_IS_BOT_1)
+            isP2bot = extras.getBoolean(Constants.KEY_IS_BOT_2)
             val number = extras.getInt(Constants.KEY_ROUNDS)
             war = War(number, p1!!, p2!!)
         }

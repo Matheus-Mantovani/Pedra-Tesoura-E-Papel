@@ -17,4 +17,5 @@ utilizará no confronto:</string>
     <string name="kind_of_game">Tipo de jogo</string>
     <string name="start_game">Iniciar Jogo</string>
     <string name="empate">Empate</string>
+    <string name="bot">Bot?</string>
 </resources>

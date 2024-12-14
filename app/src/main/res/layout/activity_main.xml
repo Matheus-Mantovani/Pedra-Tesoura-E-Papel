@@ -18,25 +18,60 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
     <EditText
         android:id="@+id/edittext_player1"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:hint="@string/name_of_player"
         android:maxLength="10"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/textview_bot_player1"
         app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/textview_bot_player1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/bot"
+        app:layout_constraintEnd_toStartOf="@id/checkbox_player1"
+        app:layout_constraintStart_toEndOf="@id/edittext_player1"
+        app:layout_constraintTop_toTopOf="@id/edittext_player1"
+        app:layout_constraintBottom_toBottomOf="@id/edittext_player1"/>
+    <CheckBox
+        android:id="@+id/checkbox_player1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="false"
+        app:layout_constraintStart_toEndOf="@id/textview_bot_player1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/edittext_player1"/>
     <EditText
         android:id="@+id/edittext_player2"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:hint="@string/name_of_player"
         android:maxLength="10"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/textview_bot_player2"
         app:layout_constraintTop_toBottomOf="@+id/edittext_player1" />
+    <TextView
+        android:id="@+id/textview_bot_player2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/bot"
+        app:layout_constraintEnd_toStartOf="@id/checkbox_player2"
+        app:layout_constraintStart_toEndOf="@id/edittext_player2"
+        app:layout_constraintTop_toTopOf="@id/edittext_player2"
+        app:layout_constraintBottom_toBottomOf="@id/edittext_player2"/>
+    <CheckBox
+        android:id="@+id/checkbox_player2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="false"
+        app:layout_constraintStart_toEndOf="@id/textview_bot_player2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/edittext_player2"/>
     <Spinner
         android:id="@+id/spinner_buttles"
         android:layout_width="wrap_content"
