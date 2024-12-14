@@ -26,7 +26,6 @@ class WarActivity : AppCompatActivity() {
     private var weaponPlayer2: Weapon? = null
     private var isP1bot: Boolean = true //valor é modificado no openBundle
     private var isP2bot: Boolean = true
-    private val tag = "testewar"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,9 +36,6 @@ class WarActivity : AppCompatActivity() {
         updateUI()
         configListener()
         configResultLauncher()
-
-        Log.i(tag, "isP1bot: $isP1bot")
-        Log.i(tag, "isP2bot: $isP2bot")
     }
 
     private fun battle() {
