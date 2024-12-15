@@ -7,7 +7,6 @@ object Constants {
     const val KEY_PLAYER_NUMBER = "player"
     const val KEY_PLAYER_NAME = "name"
     const val KEY_WEAPON = "weapon"
-    const val KEY_IS_BOT = "is_bot"
     const val KEY_IS_BOT_1 = "is_bot_1"
     const val KEY_IS_BOT_2 = "is_bot_2"
 }
